@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-color: #3f3d3a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.placeOrderController2">
+    <center>
+        <GridPane prefHeight="629.0" prefWidth="703.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="102.00003051757812" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="120.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="74.66667175292969" minHeight="14.333335876464844" prefHeight="74.66667175292969" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="63.33332824707031" minHeight="43.33332824707031" prefHeight="43.33332824707031" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="-Infinity" prefHeight="360.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="46.666656494140625" prefHeight="46.666656494140625" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="47.0" minHeight="2.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="45.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <GridPane prefHeight="379.0" prefWidth="548.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="158.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="253.33331298828125" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="45.66667175292969" minHeight="20.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="40.333343505859375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="20.0" prefHeight="130.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="20.0" prefHeight="90.66668701171875" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <JFXButton alignment="CENTER_RIGHT" contentDisplay="RIGHT" onAction="#placeOrdeBtnOnPress" style="-fx-background-color: #4DD54BFF;" text=" Place Order" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets right="20.0" />
+                            </GridPane.margin>
+                        </JFXButton>
+                  <Label text="Email" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Label text="Name" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Label text="Phone" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="custNameTxt" maxWidth="350.0" prefHeight="31.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="phoneTxt" alignment="CENTER" maxWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </JFXTextField>
+                  <Label text="Description" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets top="30.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <JFXTextArea fx:id="descriptionTxt" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" right="20.0" top="35.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </JFXTextArea>
+                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" />
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#checkEmailBtnOnAction" text="check" GridPane.columnIndex="1" />
+                        <JFXTextField fx:id="emailTxt" maxWidth="300.0" onAction="#checkEmail" prefHeight="37.0" prefWidth="245.0">
+                           <GridPane.margin>
+                              <Insets right="20.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </GridPane>
+                    </children>
+                </GridPane>
+                <Label prefHeight="39.0" prefWidth="411.0" text="Enter Customer Info" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Label>            </children>
+        </GridPane>
+    </center>
+</BorderPane>

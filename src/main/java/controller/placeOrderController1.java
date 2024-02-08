@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -156,8 +157,14 @@ public class placeOrderController1 implements Initializable {
 
     }
 
-    public void addCustomerAndPlaceOrderBtnOnPress(ActionEvent actionEvent) {
-
+    public void addCustomerAndPlaceOrderBtnOnPress(ActionEvent actionEvent) throws IOException {
+        Stage thisStage=(Stage) pane.getScene().getWindow();
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/view/PlaceOrder2.fxml"));
+        Parent root=loader.load();
+        placeOrderController2 controller2=loader.getController();
+        ItemDto newItem= itemSelected.getItem();
+        controller2.initialize(newItem);
+        thisStage.setScene(new Scene(root));
 
     }
 
