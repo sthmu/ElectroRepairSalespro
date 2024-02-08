@@ -4,6 +4,7 @@ import DTO.ItemDto;
 import Services.custom.impl.ItemBoImpl;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.PauseTransition;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -41,16 +42,37 @@ public class placeOrderController1 implements Initializable {
         loadItems();
 
 
+        categoryComboBox.setItems(FXCollections
+                .observableArrayList("Electrical", "Electronic", "All"));
+        categoryComboBox.getSelectionModel().select(2);
+
+        categoryComboBox.getSelectionModel().selectedItemProperty().addListener((observableValue, old, newvalue) -> {
+            loadItems();
+        });
+
     }
+
+
+    //IN THIS METHOD IT LOADS THE ITEMS CATALOG BASED ON WHATS SELECETED IN THE COMBOBOX
     private void loadItems() {
+        String comboboxValue = (String) categoryComboBox.getSelectionModel().getSelectedItem();
         List<ItemDto> itemDtoList = ItemBoImpl.getItemList();
         flowPane.getChildren().clear();
-        for (ItemDto ItemDto : itemDtoList) {
-            ItemBox itemBox=createItemBox(ItemDto);
-            flowPane.getChildren().add(itemBox);
-            
+        if (comboboxValue != null && (comboboxValue.equalsIgnoreCase("Electronic") | comboboxValue.equalsIgnoreCase("Electrical"))) {
+            for (ItemDto itemDto : itemDtoList) {
+                if (itemDto.getCategory().equalsIgnoreCase(comboboxValue)) {
+                    ItemBox itemBox = createItemBox(itemDto);
+                    flowPane.getChildren().add(itemBox);
+                }
+            }
+        } else {
+            for (ItemDto itemDto : itemDtoList) {
+                ItemBox itemBox = createItemBox(itemDto);
+                flowPane.getChildren().add(itemBox);
+            }
         }
     }
+
     private ItemBox createItemBox(ItemDto ItemDto) {
         ItemBox itemBox = new ItemBox(ItemDto);
 
@@ -61,8 +83,9 @@ public class placeOrderController1 implements Initializable {
 
         Label itemCode = new Label(ItemDto.getCode());
 
-        Label itemName = new Label(ItemDto.getDescription());
+        Label itemName = new Label(ItemDto.getTitle());
 
+        itemName.setStyle("-fx-font-size: 16");
 
         itemBox.getChildren().addAll(imageView, itemCode, itemName);
 
@@ -77,8 +100,6 @@ public class placeOrderController1 implements Initializable {
                 event -> {
                     System.out.println("68 th in placeorderCOntoler");
                 });
-
-
         return itemBox;
 
     }
@@ -106,7 +127,8 @@ public class placeOrderController1 implements Initializable {
     private void handleItemClick(ItemBox itemClicked) {
         selectAnItem(itemClicked);
     }
-    void selectAnItem(ItemBox itemClicked){
+
+    void selectAnItem(ItemBox itemClicked) {
         if (itemSelected != null) {
             itemSelected.setStyle("-fx-background-color: white;");
 
@@ -116,33 +138,24 @@ public class placeOrderController1 implements Initializable {
 
 
     }
+
     Stage addItemStage;
+
     public void addItemToCatalogBtnOnPress(ActionEvent actionEvent) throws IOException {
-        if(addItemStage==null){
-            addItemStage= new Stage();
-            addItemStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddItemCatalogForm.fxml"))));
-            addItemStage.show();
 
-        }
-
-        addItemStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            public void handle(WindowEvent we) {
-                System.out.println("Stage is closing");
-                loadItems();
-                System.out.println("ohh yeah");
-
-            }
-        });
+        addItemStage = new Stage();
+        addItemStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AddItemCatalogForm.fxml"))));
+        addItemStage.show();
 
         addItemStage.setOnHiding(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
-                System.out.println("Stage is closing");
                 loadItems();
-                System.out.println("ohh yeah");
-
             }
         });
+
+
     }
+
     public void addCustomerAndPlaceOrderBtnOnPress(ActionEvent actionEvent) {
 
 

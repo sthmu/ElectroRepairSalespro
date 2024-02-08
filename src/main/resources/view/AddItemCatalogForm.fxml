@@ -32,7 +32,7 @@
                 <JFXTextField fx:id="txtItemTitle" maxWidth="-Infinity" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <JFXTextField fx:id="txtDescription" maxWidth="-Infinity" prefHeight="25.0" prefWidth="262.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label prefHeight="17.0" prefWidth="87.0" text="Category" GridPane.rowIndex="3" />
-                <Label text="Add Item" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <Label text="Add Item To Catalog" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <font>
                         <Font size="26.0" />
                     </font>

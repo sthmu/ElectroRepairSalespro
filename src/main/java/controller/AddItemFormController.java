@@ -54,5 +54,11 @@ public class AddItemFormController implements Initializable {
         }
     }
 
+    public void clearFields(){
+        txtItemTitle.clear();
+        txtDescription.clear();
+
+    }
+
 
 }

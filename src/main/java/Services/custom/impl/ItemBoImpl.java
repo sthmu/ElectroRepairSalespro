@@ -10,11 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ItemBoImpl {
-
-    private static List<ItemDto> itemList = initializeItemList();
-
     private ItemDaoimpl itemDaoimpl=new ItemDaoimpl();
-
+    private static List<ItemDto> itemList = initializeItemList();
     private static List<ItemDto> initializeItemList() {
 
         List<Item> entityList = ItemDaoimpl.getAll();
@@ -30,7 +27,16 @@ public class ItemBoImpl {
             ));
         }
         return tempModelList;
+    }
 
+    private ItemDto isInList(ItemDto item) {
+
+        for(ItemDto itemInList:itemList){
+            if(item.getCode().equalsIgnoreCase(itemInList.getCode())){
+                return itemInList;
+            }
+        }
+        return null;
     }
     public boolean saveItem(ItemDto item) {
         boolean isSaved = itemDaoimpl.save(new Item(item.getCode(),item.getTitle(), item.getDescription(), item.getCategory(), item.getImage().getUrl()));
@@ -62,15 +68,7 @@ public class ItemBoImpl {
         return itemList;
     }
 
-    private ItemDto isInList(ItemDto item) {
 
-        for(ItemDto itemInList:itemList){
-            if(item.getCode().equalsIgnoreCase(itemInList.getCode())){
-                return itemInList;
-            }
-        }
-        return null;
-    }
     private void removeFromItemList(String code){
         for(ItemDto itemInList:itemList){
             if(code.equalsIgnoreCase(itemInList.getCode())){
