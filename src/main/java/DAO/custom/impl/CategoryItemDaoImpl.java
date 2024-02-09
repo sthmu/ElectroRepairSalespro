@@ -1,8 +1,6 @@
 package DAO.custom.impl;
 
-import DAO.CrudDao;
-import DAO.custom.ItemDao;
-import Entity.Item;
+import Entity.CategoryItem;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -10,21 +8,19 @@ import util.HibernateUtil;
 
 import java.util.List;
 
-public class ItemDaoimpl implements ItemDao {
-
-
-    public static List<Item> getAll() {
+public class CategoryItemDaoImpl {
+    public static List<CategoryItem> getAll() {
         Session session= HibernateUtil.getSession();
         session.beginTransaction();
-        Query query=session.createQuery("FROM Item");
-        List<Item> list=query.list();
+        Query query=session.createQuery("FROM CategoryItem");
+        List<CategoryItem> list=query.list();
         session.close();
         return list;
 
     }
 
-    @Override
-    public boolean save(Item entity) {
+
+    public static boolean save(CategoryItem entity) {
         Session session=HibernateUtil.getSession();
         Transaction transaction= session.beginTransaction();
         session.saveOrUpdate(entity);
@@ -32,14 +28,17 @@ public class ItemDaoimpl implements ItemDao {
         session.close();
         return true;
     }
-@Override
+
     public boolean delete(String code) {
-    Session session=HibernateUtil.getSession();
-    Transaction transaction= session.beginTransaction();
-    System.out.println(code);
-    session.delete(session.find(Item.class,code));
-    transaction.commit();
-    session.close();
-    return true;
+        Session session=HibernateUtil.getSession();
+        Transaction transaction= session.beginTransaction();
+        System.out.println(code);
+        session.delete(session.find(CategoryItem.class,code));
+        transaction.commit();
+        session.close();
+        return true;
     }
+
+
+
 }

@@ -1,7 +1,7 @@
 package controller;
 
-import DTO.ItemDto;
-import Services.custom.impl.ItemBoImpl;
+import DTO.CategoryItemDto;
+import Services.custom.impl.CategoryItemBoImpl;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
@@ -57,34 +57,34 @@ public class placeOrderController1 implements Initializable {
     //IN THIS METHOD IT LOADS THE ITEMS CATALOG BASED ON WHATS SELECETED IN THE COMBOBOX
     private void loadItems() {
         String comboboxValue = (String) categoryComboBox.getSelectionModel().getSelectedItem();
-        List<ItemDto> itemDtoList = ItemBoImpl.getItemList();
+        List<CategoryItemDto> itemDtoList = CategoryItemBoImpl.getItemList();
         flowPane.getChildren().clear();
         if (comboboxValue != null && (comboboxValue.equalsIgnoreCase("Electronic") | comboboxValue.equalsIgnoreCase("Electrical"))) {
-            for (ItemDto itemDto : itemDtoList) {
+            for (CategoryItemDto itemDto : itemDtoList) {
                 if (itemDto.getCategory().equalsIgnoreCase(comboboxValue)) {
                     ItemBox itemBox = createItemBox(itemDto);
                     flowPane.getChildren().add(itemBox);
                 }
             }
         } else {
-            for (ItemDto itemDto : itemDtoList) {
+            for (CategoryItemDto itemDto : itemDtoList) {
                 ItemBox itemBox = createItemBox(itemDto);
                 flowPane.getChildren().add(itemBox);
             }
         }
     }
 
-    private ItemBox createItemBox(ItemDto ItemDto) {
-        ItemBox itemBox = new ItemBox(ItemDto);
+    private ItemBox createItemBox(CategoryItemDto itemDto) {
+        ItemBox itemBox = new ItemBox(itemDto);
 
         ImageView imageView = new ImageView();
-        imageView.setImage(ItemDto.getImage());
+        imageView.setImage(itemDto.getImage());
         imageView.setFitHeight(100);
         imageView.setFitWidth(100);
 
-        Label itemCode = new Label(ItemDto.getCode());
+        Label itemCode = new Label(itemDto.getCatItemCode());
 
-        Label itemName = new Label(ItemDto.getTitle());
+        Label itemName = new Label(itemDto.getCatItemName());
 
         itemName.setStyle("-fx-font-size: 16");
 
@@ -162,7 +162,7 @@ public class placeOrderController1 implements Initializable {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/view/PlaceOrder2.fxml"));
         Parent root=loader.load();
         placeOrderController2 controller2=loader.getController();
-        ItemDto newItem= itemSelected.getItem();
+        CategoryItemDto newItem= itemSelected.getItem();
         controller2.initialize(newItem);
         thisStage.setScene(new Scene(root));
 
@@ -174,9 +174,9 @@ public class placeOrderController1 implements Initializable {
 class ItemBox extends VBox {
     @Getter
     @Setter
-    private ItemDto item;
+    private CategoryItemDto item;
 
-    ItemBox(ItemDto ItemDto) {
+    ItemBox(CategoryItemDto ItemDto) {
         super();
         this.item = ItemDto;
     }

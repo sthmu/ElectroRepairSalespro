@@ -1,13 +1,21 @@
 package controller;
 
+import DTO.CategoryItemDto;
 import DTO.CustomerDto;
-import DTO.ItemDto;
+import DTO.OrderDto;
+import Services.custom.impl.CustomerBoImpl;
+import Services.custom.impl.OrderBoImpl;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 public class placeOrderController2 {
@@ -18,18 +26,27 @@ public class placeOrderController2 {
     public BorderPane pane;
 
 
-    ItemDto selecteItemDto;
+    CategoryItemDto selecteItemDto;
 
     CustomerDto customerDto;
 
 
-    public void initialize(ItemDto selectedItem) {
+    public void initialize(CategoryItemDto selectedItem) {
         this.selecteItemDto = selectedItem;
     }
 
     public void placeOrdeBtnOnPress(ActionEvent actionEvent) {
         if (validateTxtBoxes()) {
-            System.out.println("wooow" );
+             customerDto = new CustomerDto(emailTxt.getText(), custNameTxt.getText(), phoneTxt.getText());
+            System.out.println("before CustomerId"+customerDto.getId());
+            CustomerBoImpl customerBo = new CustomerBoImpl();
+            boolean isCustomerSaved = customerBo.saveCustomer(customerDto);
+            System.out.println("After CustomerId"+customerDto.getId());
+
+            if (isCustomerSaved) {
+                OrderDto orderDto = new OrderDto(""+ LocalDate.now(),customerDto.getId(), selecteItemDto.getCatItemCode(),"ACTIVE", descriptionTxt.getText());
+                new OrderBoImpl().placeOrder(orderDto);
+            }
         }
 
     }
@@ -66,11 +83,15 @@ public class placeOrderController2 {
     }
 
 
-
     public void checkEmail(ActionEvent actionEvent) {
 
     }
 
     public void checkEmailBtnOnAction(ActionEvent actionEvent) {
+    }
+
+    public void bckBtnOnAction(ActionEvent actionEvent) throws IOException {
+        Stage thisStage = (Stage) pane.getScene().getWindow();
+        thisStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/PlaceOrder1.fxml"))));
     }
 }

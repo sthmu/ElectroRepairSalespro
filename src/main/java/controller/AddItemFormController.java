@@ -1,7 +1,7 @@
 package controller;
 
-import DTO.ItemDto;
-import Services.custom.impl.ItemBoImpl;
+import DTO.CategoryItemDto;
+import Services.custom.impl.CategoryItemBoImpl;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -24,7 +24,7 @@ public class AddItemFormController implements Initializable {
     public AnchorPane pane;
     public JFXComboBox categoryCombo;
 
-    private ItemBoImpl itemBo=new ItemBoImpl();
+    private CategoryItemBoImpl categoryItemBoImpl =new CategoryItemBoImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -38,10 +38,9 @@ public class AddItemFormController implements Initializable {
     }
 
     public void addToCatalogBtnOnPress(ActionEvent actionEvent) {
-        boolean isAdded= itemBo.saveItem(new ItemDto(
-                itemBo.getGeneratedCode(),
+        boolean isAdded= categoryItemBoImpl.saveItem(new CategoryItemDto(
+                categoryItemBoImpl.getGeneratedCode(),
                 txtItemTitle.getText(),
-                txtDescription.getText(),
                 new Image(pictureUrlLbl.getText()),
                 (String)categoryCombo.getSelectionModel().getSelectedItem()
         ));

@@ -6,6 +6,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -124,7 +126,16 @@
                     <font>
                         <Font size="30.0" />
                     </font>
-                </Label>            </children>
+                </Label>
+            <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#bckBtnOnAction" prefHeight="26.0" prefWidth="20.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="/img/bck.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>            </children>
         </GridPane>
     </center>
 </BorderPane>

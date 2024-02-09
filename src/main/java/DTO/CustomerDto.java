@@ -11,10 +11,14 @@ import lombok.Setter;
 @Setter
 public class CustomerDto {
 
-    private String id;
-    private String Email;
-    private String Name;
-    private String phoneNumber;
+    private int id;
+    private String email;
+    private String name;
+    private String phone;
 
-
+    public CustomerDto(String email, String name, String phone) {
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+    }
 }

@@ -1,8 +1,8 @@
 package Services.custom.impl;
 
-import DAO.custom.impl.ItemDaoimpl;
+//import DAO.custom.impl.ItemDaoimpl;
 import DTO.ItemDto;
-import Entity.Item;
+//import Entity.Item;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 
@@ -10,22 +10,22 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ItemBoImpl {
-    private ItemDaoimpl itemDaoimpl=new ItemDaoimpl();
+    //private ItemDaoimpl itemDaoimpl=new ItemDaoimpl();
     private static List<ItemDto> itemList = initializeItemList();
     private static List<ItemDto> initializeItemList() {
 
-        List<Item> entityList = ItemDaoimpl.getAll();
+//        List<Item> entityList = ItemDaoimpl.getAll();
         List<ItemDto> tempModelList = new LinkedList<>();
-        for (Item item : entityList) {
-
-            tempModelList.add(new ItemDto(
-                    item.getCode(),
-                    item.getTitle(),
-                    item.getDescription(),
-                    new Image(item.getImgUrl()),
-                    item.getCategory()
-            ));
-        }
+//        for (Item item : entityList) {
+//
+//            tempModelList.add(new ItemDto(
+//                    item.getCode(),
+//                    item.getTitle(),
+//                    item.getDescription(),
+//                    new Image(item.getImgUrl()),
+//                    item.getCategory()
+//            ));
+//        }
         return tempModelList;
     }
 
@@ -38,19 +38,19 @@ public class ItemBoImpl {
         }
         return null;
     }
-    public boolean saveItem(ItemDto item) {
-        boolean isSaved = itemDaoimpl.save(new Item(item.getCode(),item.getTitle(), item.getDescription(), item.getCategory(), item.getImage().getUrl()));
-        if (isSaved) {
-            new Alert(Alert.AlertType.INFORMATION, "Item Successfully Saved!").show();
-
-            updateItemList(item);
-
-            return true;
-        } else {
-            new Alert(Alert.AlertType.INFORMATION, "Item Failed to be Saved!").show();
-            return false;
-        }
-    }
+//    public boolean saveItem(ItemDto item) {
+//        boolean isSaved = itemDaoimpl.save(new Item(item.getCode(),item.getTitle(), item.getDescription(), item.getCategory(), item.getImage().getUrl()));
+//        if (isSaved) {
+//            new Alert(Alert.AlertType.INFORMATION, "Item Successfully Saved!").show();
+//
+//            updateItemList(item);
+//
+//            return true;
+//        } else {
+//            new Alert(Alert.AlertType.INFORMATION, "Item Failed to be Saved!").show();
+//            return false;
+//        }
+//    }
 
     private void updateItemList(ItemDto item) {
         ItemDto itemFromList= isInList(item);
