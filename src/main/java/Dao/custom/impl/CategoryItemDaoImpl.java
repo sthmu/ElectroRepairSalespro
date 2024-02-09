@@ -1,4 +1,4 @@
-package DAO.custom.impl;
+package Dao.custom.impl;
 
 import Entity.CategoryItem;
 import org.hibernate.Session;

@@ -1,4 +1,4 @@
-package DAO;
+package Dao;
 
 public interface CrudDao<T> {
     public boolean save(T entity);

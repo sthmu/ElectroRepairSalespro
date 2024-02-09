@@ -1,6 +1,6 @@
 package Services.custom.impl;
 
-import DAO.custom.impl.CustomerDaoimpl;
+import Dao.custom.impl.CustomerDaoimpl;
 import DTO.CustomerDto;
 import Entity.Customer;
 import Services.custom.CustomerBo;

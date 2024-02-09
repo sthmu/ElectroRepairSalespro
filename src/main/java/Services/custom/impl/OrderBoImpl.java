@@ -1,6 +1,6 @@
 package Services.custom.impl;
 
-import DAO.custom.impl.OrderDaoImpl;
+import Dao.custom.impl.OrderDaoImpl;
 import DTO.OrderDto;
 import Entity.CategoryItem;
 import Entity.Customer;
@@ -24,7 +24,7 @@ public class OrderBoImpl {
                     orders.getDate(),
                     orders.getCustomer().getId(),
                     orders.getItem().getCatItemCode(),
-                    orders.getStatus() ? "ACTIVE" : "CLOSED",
+                    orders.getStatus(),
                     orders.getDescription()
             ));
         }
@@ -41,12 +41,8 @@ public class OrderBoImpl {
         return null;
     }
 
-    public void placeOrder(OrderDto order) {
-        boolean isSaved = saveOrder(order);
-
-        if (isSaved) {
-            sendEmail(order);
-        }
+    public boolean placeOrder(OrderDto order) {
+        return saveOrder(order);
     }
 
     private void sendEmail(OrderDto order) {
@@ -63,13 +59,13 @@ public class OrderBoImpl {
                 order.getDate(),
                 customer,
                 categoryItem,
-                true,
+                "Processing",
                 order.getDescription()
         );
         boolean isSaved = OrderDaoImpl.save(ordersEntity);
         if (isSaved) {
             new Alert(Alert.AlertType.INFORMATION, "Order Successfully Placed!").show();
-
+            order.setOrderId(ordersEntity.getOrderId());
             updateOrderList(order);
 
             return true;

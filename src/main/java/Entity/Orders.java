@@ -29,12 +29,12 @@ public class Orders {
     @JoinColumn(name="item_code")
     private CategoryItem item;
 
-    private Boolean status;
+    private String status;
 
     @Column(name="description")
     private String description;
 
-    public Orders(String date, Customer customer, CategoryItem item, Boolean status, String description) {
+    public Orders(String date, Customer customer, CategoryItem item, String status, String description) {
         this.date = date;
         this.customer = customer;
         this.item = item;

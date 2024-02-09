@@ -8,7 +8,9 @@ import Services.custom.impl.OrderBoImpl;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
@@ -45,9 +47,27 @@ public class placeOrderController2 {
 
             if (isCustomerSaved) {
                 OrderDto orderDto = new OrderDto(""+ LocalDate.now(),customerDto.getId(), selecteItemDto.getCatItemCode(),"ACTIVE", descriptionTxt.getText());
-                new OrderBoImpl().placeOrder(orderDto);
+                boolean isOrderSaved=new OrderBoImpl().placeOrder(orderDto);
+
+                try {
+                    goToPlaceOrder3(orderDto);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
         }
+
+    }
+
+    private void goToPlaceOrder3(OrderDto orderDto) throws IOException {
+        Stage thisStage=(Stage) pane.getScene().getWindow();
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/view/PlaceOrder3.fxml"));
+        Parent root=loader.load();
+        placeOrderController3 controller2=loader.getController();
+
+        controller2.initialize(orderDto);
+        thisStage.setScene(new Scene(root));
 
     }
 
@@ -88,7 +108,10 @@ public class placeOrderController2 {
     }
 
     public void checkEmailBtnOnAction(ActionEvent actionEvent) {
+
     }
+
+
 
     public void bckBtnOnAction(ActionEvent actionEvent) throws IOException {
         Stage thisStage = (Stage) pane.getScene().getWindow();

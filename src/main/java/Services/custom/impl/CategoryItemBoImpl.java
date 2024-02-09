@@ -1,6 +1,6 @@
 package Services.custom.impl;
 
-import DAO.custom.impl.CategoryItemDaoImpl;
+import Dao.custom.impl.CategoryItemDaoImpl;
 import DTO.CategoryItemDto;
 import Entity.CategoryItem;
 import javafx.scene.control.Alert;
