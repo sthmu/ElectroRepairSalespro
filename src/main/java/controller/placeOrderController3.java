@@ -3,6 +3,17 @@ package controller;
 import DTO.OrderDto;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.BorderPane;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class placeOrderController3 {
 
@@ -13,7 +24,19 @@ public class placeOrderController3 {
     }
     public BorderPane pane;
 
-    public void printReciptBtnOnPress(ActionEvent actionEvent) {
+    public void printReciptBtnOnPress(ActionEvent actionEvent) throws JRException, SQLException {
+        Map<String, Object> parameters = new HashMap<>();
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/electrorepairsalespro", "root", "root");
+
+        parameters.put("orderId",order.getOrderId());
+        JasperDesign design = JRXmlLoader.load("src/main/resources/reports/order_report.jrxml");
+        JasperReport report = JasperCompileManager.compileReport(design);
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, conn);
+        JasperViewer.viewReport(jasperPrint,false);
+
+
+
     }
 
     public void emailReciptBtnOnPress(ActionEvent actionEvent) {
