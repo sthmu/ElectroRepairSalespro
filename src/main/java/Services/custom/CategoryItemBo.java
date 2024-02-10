@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public interface CategoryItemBo extends SuperBo {
-     static List<CategoryItemDto> itemList = initializeItemList();
+     List<CategoryItemDto> itemList = initializeItemList();
     static List<CategoryItemDto> initializeItemList() {
 
         List<CategoryItem> entityList = CategoryItemDaoImpl.getAll();

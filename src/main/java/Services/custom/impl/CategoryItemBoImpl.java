@@ -1,10 +1,10 @@
 package Services.custom.impl;
 
+import DTO.CategoryItemDto;
 import Dao.DaoFactory;
 import Dao.DaoType;
 import Dao.custom.CategoryItemDao;
 import Dao.custom.impl.CategoryItemDaoImpl;
-import DTO.CategoryItemDto;
 import Entity.CategoryItem;
 import Services.custom.CategoryItemBo;
 import javafx.scene.control.Alert;
@@ -15,10 +15,10 @@ import java.util.List;
 
 public class CategoryItemBoImpl implements CategoryItemBo {
 
-    private CategoryItemDao categoryItemDao= DaoFactory.getInstance().getDao(DaoType.CATEGORY_ITEM_DAO);
+    private final CategoryItemDao categoryItemDao= DaoFactory.getInstance().getDao(DaoType.CATEGORY_ITEM_DAO);
 
 
-    private static List<CategoryItemDto> itemList = initializeItemList();
+    private static final List<CategoryItemDto> itemList = initializeItemList();
     private static List<CategoryItemDto> initializeItemList() {
 
         List<CategoryItem> entityList = CategoryItemDaoImpl.getAll();

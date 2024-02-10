@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public interface CustomerBo extends SuperBo {
-     static final List<CustomerDto> customerList = initializeCustomerList();
+     List<CustomerDto> customerList = initializeCustomerList();
 
     private static List<CustomerDto> initializeCustomerList() {
         List<Customer> entityList = CustomerDaoimpl.getAll();

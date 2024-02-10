@@ -1,7 +1,6 @@
 package controller;
 
 import DTO.CategoryItemDto;
-import Entity.CategoryItem;
 import Services.BoFactory;
 import Services.BoType;
 import Services.custom.CategoryItemBo;
@@ -14,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -40,7 +38,7 @@ public class ItemCatalogFormController implements Initializable {
     Stage addItemStage;
     private ItemBox itemSelected = null;
 
-    private CategoryItemBo categoryItemBo= BoFactory.getInstance().getBo(BoType.CATEGORY_ITEM_BO);
+    private final CategoryItemBo categoryItemBo= BoFactory.getInstance().getBo(BoType.CATEGORY_ITEM_BO);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

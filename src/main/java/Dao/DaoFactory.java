@@ -3,8 +3,6 @@ package Dao;
 import Dao.custom.impl.CategoryItemDaoImpl;
 import Dao.custom.impl.CustomerDaoimpl;
 import Dao.custom.impl.OrderDaoImpl;
-import Services.custom.CategoryItemBo;
-import Services.custom.impl.CategoryItemBoImpl;
 
 public class DaoFactory {
 

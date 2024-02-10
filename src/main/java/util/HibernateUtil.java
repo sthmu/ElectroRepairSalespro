@@ -2,7 +2,6 @@ package util;
 
 import Entity.CategoryItem;
 import Entity.Customer;
-
 import Entity.Orders;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -1,13 +1,10 @@
 package Services.custom.impl;
 
-import Dao.custom.impl.CustomerDaoimpl;
 import DTO.CustomerDto;
+import Dao.custom.impl.CustomerDaoimpl;
 import Entity.Customer;
 import Services.custom.CustomerBo;
 import javafx.scene.control.Alert;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public class CustomerBoImpl implements CustomerBo {
 

@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public interface OrderBo extends SuperBo {
-     static final List<OrderDto> orderList = initializeOrderList();
+     List<OrderDto> orderList = initializeOrderList();
     private static List<OrderDto> initializeOrderList() {
         List<Orders> entityList = OrderDaoImpl.getAll();
         List<OrderDto> tempDtoList = new LinkedList<>();

@@ -3,8 +3,6 @@ package DTO;
 import javafx.scene.image.Image;
 import lombok.*;
 
-import javax.persistence.Entity;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
