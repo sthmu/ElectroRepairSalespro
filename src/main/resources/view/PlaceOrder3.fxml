@@ -40,10 +40,10 @@
                         <RowConstraints maxHeight="1.7976931348623157E308" minHeight="20.0" prefHeight="90.66668701171875" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                  <Button mnemonicParsing="false" onAction="#printReciptBtnOnPress" prefHeight="25.0" prefWidth="106.0" text="print Recipt" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#emailReciptBtnOnPress" prefHeight="25.0" prefWidth="106.0" text="Email Recipt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <JFXButton onAction="#goToDashboardBtn" prefHeight="33.0" prefWidth="119.0" text="Goto Dashboard" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <JFXButton onAction="#placeAnotherOrderBtn" prefHeight="33.0" prefWidth="141.0" text="Place Another Order" GridPane.rowIndex="5" />
+                  <Button mnemonicParsing="false" onAction="#printReciptBtnOnPress" prefHeight="25.0" prefWidth="106.0" text="print Recipt" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#emailReciptBtnOnPress" prefHeight="25.0" prefWidth="106.0" text="Email Recipt" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <JFXButton onAction="#goToDashboardBtn" prefHeight="33.0" prefWidth="119.0" text="Goto Dashboard" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <JFXButton onAction="#placeAnotherOrderBtn" prefHeight="33.0" prefWidth="141.0" text="Place Another Order" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                     </children>
                 </GridPane>
                 <Label prefHeight="39.0" prefWidth="411.0" text="Order Placed Successfully" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">

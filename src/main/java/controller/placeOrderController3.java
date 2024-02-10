@@ -2,13 +2,16 @@ package controller;
 
 import DTO.OrderDto;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -40,11 +43,17 @@ public class placeOrderController3 {
     }
 
     public void emailReciptBtnOnPress(ActionEvent actionEvent) {
+
     }
 
-    public void goToDashboardBtn(ActionEvent actionEvent) {
+    public void goToDashboardBtn(ActionEvent actionEvent) throws IOException {
+
+        Stage thisStage = (Stage) pane.getScene().getWindow();
+        thisStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Dashboard.fxml"))));
     }
 
-    public void placeAnotherOrderBtn(ActionEvent actionEvent) {
+    public void placeAnotherOrderBtn(ActionEvent actionEvent) throws IOException {
+        Stage thisStage = (Stage) pane.getScene().getWindow();
+        thisStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/PlaceOrder1.fxml"))));
     }
 }
