@@ -22,7 +22,10 @@ public class dashboardController {
     public void manageInventoryBtnOnAction(ActionEvent actionEvent) {
     }
 
-    public void itemCatalogBtnOnAction(ActionEvent actionEvent) {
+    public void itemCatalogBtnOnAction(ActionEvent actionEvent) throws IOException {
+        Stage thisStage = (Stage) pane.getScene().getWindow();
+        thisStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/ItemCatalogForm.fxml"))));
+
     }
 
     public void orderHistoryBtnOnAction(ActionEvent actionEvent) {

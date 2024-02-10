@@ -12,7 +12,7 @@ import java.util.List;
 public class CategoryItemBoImpl {
 
 
-    private static List<CategoryItemDto> itemList = initializeItemList();
+    private static final List<CategoryItemDto> itemList = initializeItemList();
     private static List<CategoryItemDto> initializeItemList() {
 
         List<CategoryItem> entityList = CategoryItemDaoImpl.getAll();

@@ -1,6 +1,6 @@
 package Dao;
 
 public interface CrudDao<T> {
-    public boolean save(T entity);
-    public boolean delete(String text);
+    boolean save(T entity);
+    boolean delete(String text);
 }

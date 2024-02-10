@@ -14,7 +14,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateUtil {
 
-    private static SessionFactory sessionFactory=createSessionFactory();
+    private static final SessionFactory sessionFactory=createSessionFactory();
 
     private static SessionFactory createSessionFactory(){
         StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()

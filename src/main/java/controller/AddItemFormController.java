@@ -24,7 +24,7 @@ public class AddItemFormController implements Initializable {
     public AnchorPane pane;
     public JFXComboBox categoryCombo;
 
-    private CategoryItemBoImpl categoryItemBoImpl =new CategoryItemBoImpl();
+    private final CategoryItemBoImpl categoryItemBoImpl =new CategoryItemBoImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,7 +39,7 @@ public class AddItemFormController implements Initializable {
 
     public void addToCatalogBtnOnPress(ActionEvent actionEvent) {
         boolean isAdded= categoryItemBoImpl.saveItem(new CategoryItemDto(
-                categoryItemBoImpl.getGeneratedCode(),
+                CategoryItemBoImpl.getGeneratedCode(),
                 txtItemTitle.getText(),
                 new Image(pictureUrlLbl.getText()),
                 (String)categoryCombo.getSelectionModel().getSelectedItem()

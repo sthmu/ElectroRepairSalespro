@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CustomerBoImpl implements CustomerBo {
-    private static List<CustomerDto> customerList = initializeCustomerList();
+    private static final List<CustomerDto> customerList = initializeCustomerList();
 
     private static List<CustomerDto> initializeCustomerList() {
         List<Customer> entityList = CustomerDaoimpl.getAll();

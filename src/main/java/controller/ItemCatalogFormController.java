@@ -33,14 +33,12 @@ public class ItemCatalogFormController implements Initializable {
     public FlowPane flowPane;
     public ComboBox categoryComboBox;
     public JFXButton addItemToCatalogBtn;
+    Stage addItemStage;
     private ItemBox itemSelected = null;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadItems();
-
-
         categoryComboBox.setItems(FXCollections
                 .observableArrayList("Electrical", "Electronic", "All"));
         categoryComboBox.getSelectionModel().select(2);
@@ -50,7 +48,6 @@ public class ItemCatalogFormController implements Initializable {
         });
 
     }
-
 
     //IN THIS METHOD IT LOADS THE ITEMS CATALOG BASED ON WHATS SELECETED IN THE COMBOBOX
     private void loadItems() {
@@ -138,8 +135,6 @@ public class ItemCatalogFormController implements Initializable {
 
     }
 
-    Stage addItemStage;
-
     public void addItemToCatalogBtnOnPress(ActionEvent actionEvent) throws IOException {
 
         addItemStage = new Stage();
@@ -155,16 +150,7 @@ public class ItemCatalogFormController implements Initializable {
 
     }
 
-    public void addCustomerAndPlaceOrderBtnOnPress(ActionEvent actionEvent) throws IOException {
-        Stage thisStage=(Stage) pane.getScene().getWindow();
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/view/PlaceOrder2.fxml"));
-        Parent root=loader.load();
-        placeOrderController2 controller2=loader.getController();
-        CategoryItemDto newItem= itemSelected.getItem();
-        controller2.initialize(newItem);
-        thisStage.setScene(new Scene(root));
 
-    }
 
 
     public void bckBtnOnAction(ActionEvent actionEvent) throws IOException {

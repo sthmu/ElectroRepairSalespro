@@ -20,12 +20,12 @@ import java.util.Map;
 
 public class placeOrderController3 {
 
+    public BorderPane pane;
     private OrderDto order;
 
     public void initialize(OrderDto dto){
         this.order=dto;
     }
-    public BorderPane pane;
 
     public void printReciptBtnOnPress(ActionEvent actionEvent) throws JRException, SQLException {
         Map<String, Object> parameters = new HashMap<>();

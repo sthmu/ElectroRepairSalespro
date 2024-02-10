@@ -33,16 +33,15 @@ public class placeOrderController1 implements Initializable {
     public FlowPane flowPane;
     public ComboBox categoryComboBox;
     public JFXButton addItemToCatalogBtn;
+    Stage addItemStage;
     private ItemBox itemSelected = null;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadItems();
 
 
-        categoryComboBox.setItems(FXCollections
-                .observableArrayList("Electrical", "Electronic", "All"));
+        categoryComboBox.setItems(FXCollections.observableArrayList("Electrical", "Electronic", "All"));
         categoryComboBox.getSelectionModel().select(2);
 
         categoryComboBox.getSelectionModel().selectedItemProperty().addListener((observableValue, old, newvalue) -> {
@@ -50,7 +49,6 @@ public class placeOrderController1 implements Initializable {
         });
 
     }
-
 
     //IN THIS METHOD IT LOADS THE ITEMS CATALOG BASED ON WHATS SELECETED IN THE COMBOBOX
     private void loadItems() {
@@ -95,16 +93,14 @@ public class placeOrderController1 implements Initializable {
         //--item clicked triggers
         itemBox.setOnMouseClicked(mouseEvent -> handleItemClick(itemBox));
 
-        addPressAndHoldHandler(itemBox, Duration.seconds(1),
-                event -> {
-                    System.out.println("68 th in placeorderCOntoler");
-                });
+        addPressAndHoldHandler(itemBox, Duration.seconds(1), event -> {
+            System.out.println("68 th in placeorderCOntoler");
+        });
         return itemBox;
 
     }
 
-    private void addPressAndHoldHandler(ItemBox node, Duration holdTime,
-                                        EventHandler<MouseEvent> handler) {
+    private void addPressAndHoldHandler(ItemBox node, Duration holdTime, EventHandler<MouseEvent> handler) {
 
         class Wrapper<T> {
             T content;
@@ -137,8 +133,16 @@ public class placeOrderController1 implements Initializable {
 
 
     }
+    public void addCustomerAndPlaceOrderBtnOnPress(ActionEvent actionEvent) throws IOException {
+        Stage thisStage = (Stage) pane.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PlaceOrder2.fxml"));
+        Parent root = loader.load();
+        placeOrderController2 controller2 = loader.getController();
+        CategoryItemDto newItem = itemSelected.getItem();
+        controller2.initialize(newItem);
+        thisStage.setScene(new Scene(root));
 
-    Stage addItemStage;
+    }
 
     public void addItemToCatalogBtnOnPress(ActionEvent actionEvent) throws IOException {
 
@@ -156,12 +160,10 @@ public class placeOrderController1 implements Initializable {
     }
 
 
-
-
     public void bckBtnOnAction(ActionEvent actionEvent) throws IOException {
         Stage thisStage = (Stage) pane.getScene().getWindow();
         thisStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Dashboard.fxml"))));
-        
+
     }
 }
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ItemBoImpl {
     //private ItemDaoimpl itemDaoimpl=new ItemDaoimpl();
-    private static List<ItemDto> itemList = initializeItemList();
+    private static final List<ItemDto> itemList = initializeItemList();
     private static List<ItemDto> initializeItemList() {
 
 //        List<Item> entityList = ItemDaoimpl.getAll();

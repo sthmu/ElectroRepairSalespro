@@ -12,7 +12,7 @@ import java.util.List;
 
 public class OrderBoImpl {
 
-    private static List<OrderDto> orderList = initializeOrderList();
+    private static final List<OrderDto> orderList = initializeOrderList();
 
     private static List<OrderDto> initializeOrderList() {
         List<Orders> entityList = OrderDaoImpl.getAll();
