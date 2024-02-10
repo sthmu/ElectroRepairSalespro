@@ -27,7 +27,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class placeOrderController1 implements Initializable {
+public class ItemCatalogFormController implements Initializable {
 
     public BorderPane pane;
     public FlowPane flowPane;
@@ -155,14 +155,24 @@ public class placeOrderController1 implements Initializable {
 
     }
 
+    public void addCustomerAndPlaceOrderBtnOnPress(ActionEvent actionEvent) throws IOException {
+        Stage thisStage=(Stage) pane.getScene().getWindow();
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/view/PlaceOrder2.fxml"));
+        Parent root=loader.load();
+        placeOrderController2 controller2=loader.getController();
+        CategoryItemDto newItem= itemSelected.getItem();
+        controller2.initialize(newItem);
+        thisStage.setScene(new Scene(root));
 
+    }
 
 
     public void bckBtnOnAction(ActionEvent actionEvent) throws IOException {
         Stage thisStage = (Stage) pane.getScene().getWindow();
         thisStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Dashboard.fxml"))));
-        
     }
 }
+
+
 
 
