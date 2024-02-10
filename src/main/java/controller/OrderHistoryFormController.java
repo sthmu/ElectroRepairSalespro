@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
@@ -62,19 +61,20 @@ public class OrderHistoryFormController implements Initializable {
         orderTbl.setRowFactory(orderInfoTmTreeTableView -> new JFXTreeTableRow<>());
         orderTbl.setRowFactory(tv -> new JFXTreeTableRow<OrderInfoTm>() {
 
-            private String getColor(OrderInfoTm orderInfoTm){
-                OrderDto actualOrderDto=OrderBo.isInList(orderInfoTm.getOrderId());
+            private String getColor(OrderInfoTm orderInfoTm) {
+                OrderDto actualOrderDto = OrderBo.isInList(orderInfoTm.getOrderId());
 
                 String status = (actualOrderDto.getStatus()).toUpperCase();
 
-                if(status.equalsIgnoreCase("pending")){
-                    if(ChronoUnit.DAYS.between(LocalDate.parse(actualOrderDto.getDate()), LocalDate.now())>10) {
+                if (status.equalsIgnoreCase("pending")) {
+                    if (ChronoUnit.DAYS.between(LocalDate.parse(actualOrderDto.getDate()), LocalDate.now()) > 10) {
                         return "Red";
                     }
                     return "orange";
                 }
-                return status.equalsIgnoreCase("processing")?"lightyellow":"lightGreen";
+                return status.equalsIgnoreCase("processing") ? "lightyellow" : "lightGreen";
             }
+
             @Override
             protected void updateItem(OrderInfoTm item, boolean empty) {
                 super.updateItem(item, empty);
@@ -83,7 +83,7 @@ public class OrderHistoryFormController implements Initializable {
                 if (item == null) {
                     setStyle("");
                 } else {
-                    setStyle("-fx-background-color:"+ getColor(item));
+                    setStyle("-fx-background-color:" + getColor(item));
 
                 }
             }
@@ -95,7 +95,7 @@ public class OrderHistoryFormController implements Initializable {
             loadOrderTable();
         });
 
-        statusComboBox.setItems(FXCollections.observableArrayList("Pending","Processing","Completed","All"));
+        statusComboBox.setItems(FXCollections.observableArrayList("Pending", "Processing", "Completed", "All"));
 
         statusComboBox.getSelectionModel().selectedItemProperty().addListener((observableValue, old, newvalue) -> {
             loadOrderTable();
@@ -105,28 +105,25 @@ public class OrderHistoryFormController implements Initializable {
         loadOrderTable();
 
         orderTbl.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
-            if(newValue!=null)setData(newValue.getValue());
+            if (newValue != null) setData(newValue.getValue());
         });
 
 
     }
 
     private void setData(OrderInfoTm orderInfoTm) {
-        OrderDto orderDto=OrderBo.isInList(orderInfoTm.getOrderId());
+        OrderDto orderDto = OrderBo.isInList(orderInfoTm.getOrderId());
         //configure selectedOrderComboBox Setttings
-        ObservableList<String> scomboboxItemList=FXCollections.observableArrayList();
-        String orderStatus=orderDto.getStatus();
-        if(orderStatus.equalsIgnoreCase("pending")){
-            scomboboxItemList.addAll(orderStatus,"Processing","Completed");
-        }
-        else if(orderStatus.equalsIgnoreCase("processing")){
-            scomboboxItemList.addAll(orderStatus,"Completed");
+        ObservableList<String> scomboboxItemList = FXCollections.observableArrayList();
+        String orderStatus = orderDto.getStatus();
+        if (orderStatus.equalsIgnoreCase("pending")) {
+            scomboboxItemList.addAll(orderStatus, "Processing", "Completed");
+        } else if (orderStatus.equalsIgnoreCase("processing")) {
+            scomboboxItemList.addAll(orderStatus, "Completed");
         }
         selectedOrderStatusComboBox.setItems(scomboboxItemList);
 
-
-
-        orderIdLbl.setText("#OR"+orderDto.getOrderId());
+        orderIdLbl.setText("#OR" + orderDto.getOrderId());
         customerNameLbl.setText(CustomerBo.isInList(orderDto.getCustId()).getName());
         phoneNumberTxt.setText(CustomerBo.isInList(orderDto.getCustId()).getPhone());
         emailTxt.setText(CustomerBo.isInList(orderDto.getCustId()).getEmail());
@@ -135,16 +132,30 @@ public class OrderHistoryFormController implements Initializable {
         selectedOrderStatusComboBox.getSelectionModel().select(orderStatus);
     }
 
+    private void clearFields() {
+
+        orderIdLbl.setText("#OR");
+        customerNameLbl.setText("#C");
+        phoneNumberTxt.clear();
+        emailTxt.clear();
+        itemNameTxt.setText("#I");
+        descriptionTxt.clear();
+        selectedOrderStatusComboBox.getSelectionModel().clearSelection();
+
+
+    }
+
     private void loadOrderTable() {
+        clearFields();
         String comboboxValue = (String) categoryComboBox.getSelectionModel().getSelectedItem();
-        String statusComboBoxValue=(String) statusComboBox.getSelectionModel().getSelectedItem();
+        String statusComboBoxValue = (String) statusComboBox.getSelectionModel().getSelectedItem();
         System.out.println("LOADING TABLE");
         ObservableList<OrderInfoTm> tmList = FXCollections.observableArrayList();
         LinkedList<OrderDto> orderDtoArrayList = (LinkedList<OrderDto>) orderBo.getAll();
         if (comboboxValue != null && (comboboxValue.equalsIgnoreCase("Electronic") | comboboxValue.equalsIgnoreCase("Electrical"))) {
 
         }
-            for (OrderDto orderDto : orderDtoArrayList) {
+        for (OrderDto orderDto : orderDtoArrayList) {
             OrderInfoTm orderInfoTm = new OrderInfoTm(
                     orderDto.getOrderId(),
                     orderDto.getDate(),
@@ -158,11 +169,11 @@ public class OrderHistoryFormController implements Initializable {
         orderTbl.setShowRoot(false);
 
 
-
     }
 
+
     public void statusComboBoxOnAction(ActionEvent actionEvent) {
-        System.out.println("ComboBox Action" );
+        System.out.println("ComboBox Action");
     }
 
     public void searchBarOnAction(ActionEvent actionEvent) {
