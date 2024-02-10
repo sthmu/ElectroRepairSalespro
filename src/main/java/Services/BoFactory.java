@@ -3,6 +3,7 @@ package Services;
 import Services.custom.impl.CategoryItemBoImpl;
 import Services.custom.impl.CustomerBoImpl;
 import Services.custom.impl.OrderBoImpl;
+import Services.custom.impl.UserrBoImpl;
 
 public class BoFactory {
     private BoFactory(){}
@@ -16,7 +17,7 @@ public class BoFactory {
             case CATEGORY_ITEM_BO:return (T)new CategoryItemBoImpl();
             case ORDER_BO:return (T) new OrderBoImpl();
             case CUSTOMER_BO:return (T) new CustomerBoImpl();
-
+            case USER_BO:return (T) new UserrBoImpl();
         }
         return null;
     }

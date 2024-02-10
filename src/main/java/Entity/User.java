@@ -22,10 +22,10 @@ public class User {
     @Column(name = "password")
     private String Password;
     @Column(name = "status")
-    private boolean status =true;
+    private boolean status = true;
     @Column(name = "Description")
     private String description;
-    @Column(name = "created_at", nullable = false, updatable = false, insertable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @Column(name = "AuthorityLVL")
