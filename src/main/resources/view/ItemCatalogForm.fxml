@@ -54,6 +54,14 @@
                                 <Insets left="20.0" />
                             </GridPane.margin>
                         </ComboBox>
+                  <JFXButton fx:id="deleteItemToCatalogBtn1" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="0.0" mnemonicParsing="false" onAction="#deleteItemToCatalogBtnOnPress" prefHeight="48.0" prefWidth="49.0" style="-fx-background-color: red; -fx-border-color: #5AA94C; -fx-border-radius: 10; -fx-background-radius: 10;" text="Delete" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Wingdings" size="10.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                  </JFXButton>
                     </children>
                 </GridPane>
                 <Label prefHeight="39.0" prefWidth="411.0" text="Item Catalog" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">

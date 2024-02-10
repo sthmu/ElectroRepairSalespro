@@ -1,6 +1,10 @@
 package controller;
 
 import DTO.CategoryItemDto;
+import Entity.CategoryItem;
+import Services.BoFactory;
+import Services.BoType;
+import Services.custom.CategoryItemBo;
 import Services.custom.impl.CategoryItemBoImpl;
 import com.jfoenix.controls.JFXButton;
 import controller.components.ItemBox;
@@ -35,6 +39,8 @@ public class ItemCatalogFormController implements Initializable {
     public JFXButton addItemToCatalogBtn;
     Stage addItemStage;
     private ItemBox itemSelected = null;
+
+    private CategoryItemBo categoryItemBo= BoFactory.getInstance().getBo(BoType.CATEGORY_ITEM_BO);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -156,6 +162,11 @@ public class ItemCatalogFormController implements Initializable {
     public void bckBtnOnAction(ActionEvent actionEvent) throws IOException {
         Stage thisStage = (Stage) pane.getScene().getWindow();
         thisStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Dashboard.fxml"))));
+    }
+
+    public void deleteItemToCatalogBtnOnPress(ActionEvent actionEvent) {
+        CategoryItemDto itemDto= itemSelected.getItem();
+        categoryItemBo.deleteCategoryItem(itemDto.getCatItemCode());
     }
 }
 

@@ -1,18 +1,24 @@
 package Services.custom.impl;
 
+import Dao.DaoFactory;
+import Dao.DaoType;
+import Dao.custom.CategoryItemDao;
 import Dao.custom.impl.CategoryItemDaoImpl;
 import DTO.CategoryItemDto;
 import Entity.CategoryItem;
+import Services.custom.CategoryItemBo;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class CategoryItemBoImpl {
+public class CategoryItemBoImpl implements CategoryItemBo {
+
+    private CategoryItemDao categoryItemDao= DaoFactory.getInstance().getDao(DaoType.CATEGORY_ITEM_DAO);
 
 
-    private static final List<CategoryItemDto> itemList = initializeItemList();
+    private static List<CategoryItemDto> itemList = initializeItemList();
     private static List<CategoryItemDto> initializeItemList() {
 
         List<CategoryItem> entityList = CategoryItemDaoImpl.getAll();
@@ -29,7 +35,7 @@ public class CategoryItemBoImpl {
         return tempModelList;
     }
 
-    public static CategoryItemDto isInList(CategoryItemDto item) {
+    public CategoryItemDto isInList(CategoryItemDto item) {
 
         for(CategoryItemDto itemInList:itemList){
             if(item.getCatItemCode().equalsIgnoreCase(itemInList.getCatItemCode())){
@@ -47,6 +53,7 @@ public class CategoryItemBoImpl {
         }
         return null;
     }
+    @Override
     public boolean saveItem(CategoryItemDto item) {
         boolean isSaved = CategoryItemDaoImpl.save(new CategoryItem(item.getCatItemCode(),item.getCatItemName(), item.getCategory(), item.getImage().getUrl()));
         if (isSaved) {
@@ -61,7 +68,8 @@ public class CategoryItemBoImpl {
         }
     }
 
-    private void updateItemList(CategoryItemDto item) {
+    @Override
+    public void updateItemList(CategoryItemDto item) {
         CategoryItemDto itemFromList= isInList(item);
         if(itemFromList==null){
             itemList.add(item);
@@ -78,12 +86,21 @@ public class CategoryItemBoImpl {
     }
 
 
-    private void removeFromItemList(String code){
+
+
+
+    @Override
+    public void removeFromItemList(String code){
         for(CategoryItemDto itemInList:itemList){
             if(code.equalsIgnoreCase(itemInList.getCatItemCode())){
                 itemList.remove(itemInList);
             }
         }
+
+    }
+
+    @Override
+    public void deleteCategoryItem(String catItemCode) {
 
     }
 

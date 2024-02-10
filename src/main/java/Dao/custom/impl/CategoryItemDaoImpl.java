@@ -1,5 +1,6 @@
 package Dao.custom.impl;
 
+import Dao.custom.CategoryItemDao;
 import Entity.CategoryItem;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,7 +9,7 @@ import util.HibernateUtil;
 
 import java.util.List;
 
-public class CategoryItemDaoImpl {
+public class CategoryItemDaoImpl implements CategoryItemDao {
     public static List<CategoryItem> getAll() {
         Session session= HibernateUtil.getSession();
         session.beginTransaction();
@@ -29,6 +30,7 @@ public class CategoryItemDaoImpl {
         return true;
     }
 
+    @Override
     public boolean delete(String code) {
         Session session=HibernateUtil.getSession();
         Transaction transaction= session.beginTransaction();

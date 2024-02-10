@@ -1,5 +1,6 @@
 package Dao.custom.impl;
 
+import Dao.custom.CustomerDao;
 import Entity.Customer;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,7 +9,7 @@ import util.HibernateUtil;
 
 import java.util.List;
 
-public class CustomerDaoimpl {
+public class CustomerDaoimpl implements CustomerDao {
     public static List<Customer> getAll() {
         Session session= HibernateUtil.getSession();
         session.beginTransaction();

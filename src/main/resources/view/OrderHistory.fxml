@@ -67,7 +67,7 @@
                               <TreeTableColumn fx:id="idCol" minWidth="73.0" prefWidth="-1.0" text="ID" />
                               <TreeTableColumn fx:id="dateCol" minWidth="108.0" prefWidth="-1.0" text="Date" />
                               <TreeTableColumn fx:id="nameCol" minWidth="93.0" prefWidth="139.0" text="Name" />
-                              <TreeTableColumn minWidth="65.0" prefWidth="115.0" text="Item" />
+                              <TreeTableColumn fx:id="itemCol" minWidth="65.0" prefWidth="115.0" text="Item" />
                            </columns>
                         </JFXTreeTableView>
                      </center>

@@ -10,28 +10,12 @@ import javafx.scene.control.Alert;
 import java.util.LinkedList;
 import java.util.List;
 
-public class OrderBoImpl {
+public class OrderBoImpl implements Services.custom.OrderBo {
 
-    private static final List<OrderDto> orderList = initializeOrderList();
 
-    private static List<OrderDto> initializeOrderList() {
-        List<Orders> entityList = OrderDaoImpl.getAll();
-        List<OrderDto> tempDtoList = new LinkedList<>();
-        for (Orders orders : entityList) {
 
-            tempDtoList.add(new OrderDto(
-                    orders.getOrderId(),
-                    orders.getDate(),
-                    orders.getCustomer().getId(),
-                    orders.getItem().getCatItemCode(),
-                    orders.getStatus(),
-                    orders.getDescription()
-            ));
-        }
-        return tempDtoList;
-    }
-
-    private OrderDto isInList(OrderDto order) {
+    @Override
+    public OrderDto isInList(OrderDto order) {
 
         for (OrderDto orderDto : orderList) {
             if (order.getOrderId() == (orderDto.getOrderId())) {
@@ -41,6 +25,7 @@ public class OrderBoImpl {
         return null;
     }
 
+    @Override
     public boolean placeOrder(OrderDto order) {
         return saveOrder(order);
     }
@@ -48,6 +33,7 @@ public class OrderBoImpl {
     private void sendEmail(OrderDto order) {
     }
 
+    @Override
     public boolean saveOrder(OrderDto order) {
         Customer customer=new Customer();
         customer.setId(order.getCustId());
@@ -73,6 +59,11 @@ public class OrderBoImpl {
             new Alert(Alert.AlertType.INFORMATION, "Item Failed to be Saved!").show();
             return false;
         }
+    }
+
+    @Override
+    public List<OrderDto> getAll() {
+        return orderList;
     }
 
     private void updateOrderList(OrderDto order) {

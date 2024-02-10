@@ -1,4 +1,6 @@
 package Dao.custom;
 
-public interface CustomerDao {
+import Dao.SuperDao;
+
+public interface CustomerDao extends SuperDao {
 }

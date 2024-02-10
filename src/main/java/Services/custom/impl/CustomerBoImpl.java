@@ -10,22 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CustomerBoImpl implements CustomerBo {
-    private static final List<CustomerDto> customerList = initializeCustomerList();
 
-    private static List<CustomerDto> initializeCustomerList() {
-        List<Customer> entityList = CustomerDaoimpl.getAll();
-        List<CustomerDto> tempDtoList = new LinkedList<>();
-        for (Customer customer : entityList) {
-
-            tempDtoList.add(new CustomerDto(
-                    customer.getId(),
-                    customer.getEmail(),
-                    customer.getName(),
-                    customer.getPhone()
-            ));
-        }
-        return tempDtoList;
-    }
 
 //    public static String getGeneratedId() {
 //        int lastCodeNum = 0;
@@ -66,7 +51,8 @@ public class CustomerBoImpl implements CustomerBo {
         }
     }
 
-    private void updateCustomerList(CustomerDto customerDto) {
+    @Override
+    public void updateCustomerList(CustomerDto customerDto) {
         CustomerDto customerFromList = isInList(customerDto);
         if (customerFromList == null) {
             customerList.add(customerDto);

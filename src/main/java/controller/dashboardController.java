@@ -28,6 +28,9 @@ public class dashboardController {
 
     }
 
-    public void orderHistoryBtnOnAction(ActionEvent actionEvent) {
+    public void orderHistoryBtnOnAction(ActionEvent actionEvent) throws IOException {
+        Stage thisStage = (Stage) pane.getScene().getWindow();
+        thisStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/OrderHistory.fxml"))));
+
     }
 }

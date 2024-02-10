@@ -1,5 +1,6 @@
 package Dao.custom.impl;
 
+import Dao.custom.OrderDao;
 import Entity.Orders;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,7 +9,7 @@ import util.HibernateUtil;
 
 import java.util.List;
 
-public class OrderDaoImpl {
+public class OrderDaoImpl implements OrderDao {
     public static List<Orders> getAll() {
         Session session= HibernateUtil.getSession();
         session.beginTransaction();
